@@ -3,8 +3,6 @@ package org.unknown.backtracking.permutation;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.jnlp.IntegrationService;
-
 public class PermutationEngine {
 
   public void generatePermutations(String[] array) {
