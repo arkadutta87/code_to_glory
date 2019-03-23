@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SpiralTraverse {
+  /*
+  solution to the problem : https://www.interviewbit.com/problems/spiral-order-matrix-i/
+   */
 
   public static void main(String[] args) {
 
