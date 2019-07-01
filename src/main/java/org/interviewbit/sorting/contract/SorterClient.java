@@ -1,10 +1,12 @@
 package org.interviewbit.sorting.contract;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.interviewbit.sorting.contract.implementation.InsertionSorter;
 import org.interviewbit.sorting.contract.implementation.MergeSorter;
+import org.interviewbit.sorting.contract.implementation.QuickSorter;
 
 public class SorterClient {
 
@@ -12,22 +14,20 @@ public class SorterClient {
 
     insertionSortClient();
     mergeSortClient();
+    quickSortClient();
   }
 
-  private static double[] getAnUnsortedArray() {
-    double[] array = {7.7, 2, 1, 6, 8, 5, 7.1, 3, 4, 25, 19, 16, 11, 10};
+  private static Double[] getAnUnsortedArray() {
+    Double[] array = {7.7, 2.0, 1.0, 6.0, 8.0, 5.0, 7.1, 3.0, 4d, 25d, 7.1, 19d, 6d, 16d, 11d, 10d};
 
     return array;
   }
 
   private static void insertionSortClient() {
 
-    double[] array = getAnUnsortedArray();
+    Double[] array = getAnUnsortedArray();
 
-    List<Double> list = new ArrayList<>();
-    for (double a : array) {
-      list.add(a);
-    }
+    List<Double> list = Arrays.asList(array);
 
     Sorter sorter = new InsertionSorter();
     sorter.sort(list);
@@ -38,17 +38,30 @@ public class SorterClient {
 
   private static void mergeSortClient() {
 
-    double[] array = getAnUnsortedArray();
+    Double[] array = getAnUnsortedArray();
 
     List<Double> list = new ArrayList<>();
     for (double a : array) {
       list.add(a);
     }
 
-    Sorter sorter = new MergeSorter();  
+    Sorter sorter = new MergeSorter();
     sorter.sort(list);
 
     System.out.println("\nList after Merge sorting : -> ");
+    printTheArray(list);
+  }
+
+  private static void quickSortClient() {
+
+    Double[] array = getAnUnsortedArray();
+
+    List<Double> list = Arrays.asList(array);
+
+    Sorter sorter = new QuickSorter();
+    sorter.sort(list);
+
+    System.out.println("\nList after Quick sorting : -> ");
     printTheArray(list);
   }
 
