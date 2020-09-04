@@ -1,22 +1,23 @@
-package org.synchronization.fork_join.util;
+package org.concurrency_cookbook.fork_join.recipe1;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.synchronization.fork_join.model.Product;
-
 public class ProductListGenerator {
 
   public List<Product> generate(int size){
-    List<Product> generatedList  = new ArrayList<>();
+    List<Product> products = new ArrayList<>();
 
     for(int i = 0 ; i < size ; i++){
       Product product = new Product();
-      product.setName("Product "+i);
+      product.setName("Product " + i);
       product.setPrice(10);
-      generatedList.add(product);
+
+      products.add(product);
     }
 
-    return generatedList;
+    return products;
   }
+
+
 }

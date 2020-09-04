@@ -1,27 +1,24 @@
-package org.synchronization.fork_join.model;
+package org.concurrency_cookbook.fork_join.recipe2;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.RecursiveTask;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 public class DocumentTask extends RecursiveTask<Integer> {
 
-  private String document[][];
+  private String[][] document;
   private int start, end;
   private String word;
 
-  public DocumentTask(String[][] document, int start, int end, String word) {
-    this.document = document;
-    this.start = start;
-    this.end = end;
-    this.word = word;
-  }
 
   @Override
   protected Integer compute() {
+    Integer result = null;
 
-    int result = 0;
     if (end - start < 10) {
       result = processLines(document, start, end, word);
     }
@@ -32,7 +29,7 @@ public class DocumentTask extends RecursiveTask<Integer> {
       invokeAll(task1, task2);
 
       try {
-        result = groupResults(task1.get(), task2.get());
+        groupResults(task1.get(), task2.get());
       }
       catch (InterruptedException | ExecutionException e) {
         e.printStackTrace();
@@ -40,14 +37,16 @@ public class DocumentTask extends RecursiveTask<Integer> {
     }
 
     return result;
+  }
 
+  private int groupResults(int number1, int number2) {
+    return number1 + number2;
   }
 
   private Integer processLines(String[][] document, int start, int end, String word) {
-    List<LineTask> tasks = new ArrayList<LineTask>();
+    List<LineTask> tasks = new ArrayList<>();
     for (int i = start; i < end; i++) {
-      LineTask task = new LineTask(document[i], 0, document[i].
-          length, word);
+      LineTask task = new LineTask(document[i], 0, document[i].length, word);
       tasks.add(task);
     }
 
@@ -63,13 +62,7 @@ public class DocumentTask extends RecursiveTask<Integer> {
         e.printStackTrace();
       }
     }
-    return new Integer(result);
-  }
 
-  private Integer groupResults(Integer number1, Integer number2) {
-    Integer result;
-    result = number1 + number2;
     return result;
   }
-
 }
