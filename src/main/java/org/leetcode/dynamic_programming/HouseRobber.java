@@ -29,11 +29,8 @@ public class HouseRobber {
             houseIndex2 = currentHouse + 3;
         }
 
-        memoization.put(houseIndex1, maximiseRobbery(nums, houseIndex1, memoization));
-        memoization.put(houseIndex2, maximiseRobbery(nums, houseIndex2, memoization));
-
         memoization.put(currentHouse, (currentHouse == -1 ? 0 : nums[currentHouse]) +
-                Math.max(memoization.get(houseIndex1), memoization.get(houseIndex2)));
+                Math.max(maximiseRobbery(nums, houseIndex1, memoization), maximiseRobbery(nums, houseIndex2, memoization)));
 
         return memoization.get(currentHouse);
     }
